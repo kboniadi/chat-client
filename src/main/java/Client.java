@@ -19,19 +19,18 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
 public class Client implements Runnable {
-    private final String serverAddress;
+    private static final String serverAddress = "45.57.226.7";
     private BufferWrapper buffer;
     private final Stage main;
     private final TextField field;
     private final TextArea area;
     private boolean running;
 
-    public Client(Stage stage, String serverAddress) {
+    public Client(Stage stage) {
         main = stage;
         field = new TextField();
         area = new TextArea();
         running = true;
-        this.serverAddress = serverAddress;
 
         field.setEditable(false);
         area.setEditable(false);

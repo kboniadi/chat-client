@@ -8,7 +8,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Client client = new Client(stage, "localhost");
+        Client client = new Client(stage);
         Thread thread = new Thread(client);
         thread.start();
     }
