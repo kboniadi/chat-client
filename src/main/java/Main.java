@@ -7,7 +7,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         Client client = new Client(stage);
         Thread thread = new Thread(client);
         thread.start();

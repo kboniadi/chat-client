@@ -19,7 +19,7 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
 public class Client implements Runnable {
-    private static final String serverAddress = "45.57.226.7";
+    private static final String serverAddress = "localhost";
     private BufferWrapper buffer;
     private final Stage main;
     private final TextField field;
@@ -41,6 +41,7 @@ public class Client implements Runnable {
             if ((field.getText()).equals("\\quit")) {
                 running = false;
                 Platform.exit();
+                System.exit(0);
             }
             field.setText("");
         });
@@ -49,9 +50,10 @@ public class Client implements Runnable {
         vbox.getChildren().addAll(area, field);
         main.setScene(new Scene(vbox));
         main.setOnCloseRequest(event -> {
-            buffer.writeLine(GsonWrapper.toJson(MessageData.of("\\quit")));
+//            buffer.writeLine(GsonWrapper.toJson(MessageData.of("\\quit")));
             running = false;
             Platform.exit();
+            System.exit(0);
         });
         main.show();
     }
@@ -69,7 +71,8 @@ public class Client implements Runnable {
         if (result.isEmpty()) {
             running = false;
             Platform.exit();
-            return "\\quit";
+            System.exit(0);
+            return "";
         }
         return result.get();
     }
@@ -126,7 +129,9 @@ public class Client implements Runnable {
         } catch (Exception e) {
             System.out.println("Server down");
             e.printStackTrace();
-            Platform.exit();
-        }
+            System.exit(0);
+        } finally {
+	    System.exit(0);
+	}
     }
 }
